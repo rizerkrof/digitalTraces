@@ -1,0 +1,13 @@
+#+title: Project Spec
+#+begin_src json
+{
+	"name": "first_micro",
+	"id": "a9b24529-bab0-457a-b4d2-fbc29a5cb7c7",
+	"project": "a0tywv20",
+	"runtime": "python3.9",
+	"endpoint": "https://6t82ta.deta.dev",
+	"region": "eu-central-1",
+	"visor": "disabled",
+	"http_auth": "disabled"
+}
+#+end_src
