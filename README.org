@@ -14,4 +14,5 @@ This repository shows a basic example of Google analytics implementation with de
 * Technicalities
 This project was deployed using deta. See more information [[https://docs.deta.sh/docs/micros/getting_started][HERE]].
 Adding Google Analytics html tags with a token allows the web app creator to monitor the traffic:
+
 [[./assets/readmeImages/gaTrafficPanel.png]]
