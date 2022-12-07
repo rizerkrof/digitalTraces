@@ -9,7 +9,6 @@
 
         <link rel="apple-touch-icon" href="/apple-touch-icon.png">
         <!-- Place favicon.ico in the root directory -->
-
     </head>
     <body>
         <!--[if lt IE 8]>
@@ -21,6 +20,9 @@
         <![endif]-->
         <h1>Logger page</h1>
         <!-- <span style="white-space: pre-line">{{value}}</span> -->
-        <script>console.log('{{value}}')</script>
+        <script src="{{url_for('static', filename='utils.js')}}"></script>
+        <script>log('{{value}}')</script>
+        <input name="text_box", id="id_text_box">
+        <input type="submit" onclick="log(getElementValue('id_text_box'))">
     </body>
 </html>
