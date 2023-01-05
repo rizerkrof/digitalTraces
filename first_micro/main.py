@@ -4,22 +4,6 @@ import requests
 app = Flask(__name__)
 
 @app.route('/', methods=["GET"])
-# def hello_world():
-#     prefix_google = """
-        # <!-- Google tag (gtag.js) -->
-        # <script async src="https://www.googletagmanager.com/gtag/js?id=G-SSBHSGEKLF"></script>
-        # <script>
-        #     window.dataLayer = window.dataLayer || [];
-        #     function gtag(){dataLayer.push(arguments);}
-        #     gtag('js', new Date());
-        #     gtag('config', 'G-SSBHSGEKLF');
-        # </script>
-#         <body>
-#             <button onclick="func()">Click me</button>
-#             <script src="googleAnalytics.js"></script>
-#         </body>
-#     """
-#     return prefix_google + "Hello World"
 def home():
     return render_template('home.html')
 
@@ -39,6 +23,26 @@ def cookie():
 def cookieGA():
     req=requests.get('https://analytics.google.com/analytics/web/#/p345090052/reports/intelligenthome')
     return req.text
+
+@app.route('/googletrend', methods = ["GET", "POST"])
+def chartpytrend():
+    pytrends = TrendReq()
+    kw_list = ['python']
+    pytrends.build_payload(kw_list=kw_list, timeframe='today 5-y')
+    trend_data = pytrends.interest_over_time()
+
+    plt.plot(trend_data['python'])
+    plt.xlabel('Date')
+    plt.ylabel('Trend')
+
+    buf = BytesIO()
+    plt.savefig(buf, format='png')
+    buf.seek(0)
+
+    chart_url = base64.b64encode(buf.getvalue()).decode()
+    plt.clf()
+
+    return render_template('plot.html', chart_url=chart_url)
 
 if __name__ == '__main__':
     app.run(debug=True)
